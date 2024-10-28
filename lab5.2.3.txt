@@ -1,0 +1,55 @@
+import time
+import RPi.GPIO as GPIO
+import dht11
+from ST7735 import ST7735  # Ensure this is the correct import for your ST7735 library
+
+# GPIO setup
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BCM)
+GPIO.cleanup()  # Clear previous GPIO settings
+
+# Initialize DHT11 sensor
+dht = dht11.DHT11(pin=2)  # Connect DHT11 data pin to GPIO 2
+
+# Initialize ST7735 display
+disp = ST7735()  # Adjust as needed based on your setup
+disp.begin()  # Initialize the display
+disp.clear()  # Clear the display
+
+# Main loop
+try:
+    while True:
+        result = dht.read()
+        if result.is_valid():
+            # Prepare temperature and humidity text
+            text = f"Temperature: {result.temperature} C\nHumidity: {result.humidity} %"
+            
+            # Clear the display and draw the text
+            disp.clear()  # Clear the display before drawing new text
+            disp.text((0, 0), text, font=disp.font, fill=disp.WHITE)  # Adjust coordinates as needed
+            
+            print(text)  # Print to console for debugging
+        else:
+            print("Failed to read from DHT11 sensor.")
+        
+        time.sleep(2)  # Wait for 2 seconds before the next reading
+except KeyboardInterrupt:
+    print("Measurement stopped by User")
+finally:
+    GPIO.cleanup()  # Clean up GPIO settings
+Explanation of the Code
+Import Libraries: The necessary libraries for GPIO handling, DHT11 sensor reading, and ST7735 display control are imported.
+GPIO Setup: The GPIO pins are configured, and any previous settings are cleared to avoid conflicts.
+Sensor Initialization: The DHT11 sensor is initialized by specifying the GPIO pin it's connected to (GPIO 2).
+Display Initialization: The ST7735 display is initialized and cleared for fresh output.
+Main Loop:
+Inside a try block, the program continuously reads data from the DHT11 sensor.
+If the reading is valid, it formats the temperature and humidity into a string.
+The display is cleared, and the text is drawn using the specified coordinates.
+If the reading is invalid, an error message is printed.
+The loop runs every 2 seconds.
+Cleanup: On interruption (e.g., pressing Ctrl+C), the GPIO settings are cleaned up to ensure proper shutdown.
+Note
+Ensure that you have the correct methods for initializing and drawing on the ST7735 display as per your specific library.
+You may need to adjust the disp.text() method parameters depending on the library's API.
+Make sure to handle any dependencies or errors that might occur during sensor reading and display operations.

@@ -1,0 +1,49 @@
+In the ST7735_Draw.py file, the draw methods like draw.ellipse(), draw.line(), and draw.polygon() are used to create graphical shapes on a display. Let's break down the specific parameters used in each method:
+
+1. draw.ellipse()
+python
+
+複製
+draw.ellipse((10, 10, 110, 80), outline=GREEN, fill=RED)
+Parameters:
+Bounding Box: (10, 10, 110, 80)
+This tuple defines the bounding box for the ellipse. The values represent:
+(x0, y0): The top-left corner of the bounding box (10, 10).
+(x1, y1): The bottom-right corner of the bounding box (110, 80).
+outline: GREEN
+This specifies the color of the ellipse's outline.
+fill: RED
+This specifies the fill color of the ellipse.
+2. draw.line()
+python
+
+複製
+draw.line((10, 80, 110, 120), fill=WHITE)
+draw.line((10, 120, 110, 80), fill=WHITE)
+Parameters:
+Line Coordinates: (10, 80, 110, 120) and (10, 120, 110, 80)
+Each tuple represents the start and end points of the line:
+(x0, y0): The starting point of the line (10, 80) for the first line and (10, 120) for the second line.
+(x1, y1): The ending point of the line (110, 120) for the first line and (110, 80) for the second line.
+fill: WHITE
+This specifies the color of the line.
+3. draw.polygon()
+python
+
+複製
+draw.polygon([(120, 10), (150, 10), (135, 65), (150, 120), (120, 120)], outline=WHITE, fill=CYAN)
+Parameters:
+Vertices: [(120, 10), (150, 10), (135, 65), (150, 120), (120, 120)]
+This is a list of tuples, where each tuple represents a vertex (corner point) of the polygon:
+(120, 10): First vertex.
+(150, 10): Second vertex.
+(135, 65): Third vertex.
+(150, 120): Fourth vertex.
+(120, 120): Fifth vertex.
+outline: WHITE
+This specifies the color of the polygon's outline.
+fill: CYAN
+This specifies the fill color of the polygon.
+Summary
+Each method allows you to define shapes with specific coordinates and colors for outlines and fills.
+The coordinates are defined in a Cartesian plane relative to the display, where (0, 0) is typically the top-left corner. The values determine the position and size of the shapes drawn on the screen.

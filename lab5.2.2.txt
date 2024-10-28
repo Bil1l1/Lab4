@@ -1,0 +1,27 @@
+In the ST7735_Text.py file, the draw.text() method is used to render text on a display. Let’s break down the parameters used in this method call:
+
+python
+
+
+draw.text(
+    (width // 2 - font_width // 2, height // 2 - font_height // 2),
+    text,
+    font=font,
+    fill=WHITE,
+)
+Parameters Explained
+Text Position: (width // 2 - font_width // 2, height // 2 - font_height // 2)
+This tuple determines the coordinates where the text will be drawn.
+width // 2: This calculates the horizontal center of the display.
+height // 2: This calculates the vertical center of the display.
+font_width // 2: This gets half the width of the text to adjust the position so the text is centered horizontally.
+font_height // 2: This gets half the height of the text to adjust the position so the text is centered vertically.
+The final calculation positions the text such that it is centered in the middle of the display.
+Text Content: text
+This is the string that will be drawn on the display. In this case, it is "Hello World!".
+Font: font=font
+This specifies the font to be used for rendering the text. The font variable typically holds a font object created using a font file or a default font.
+Fill Color: fill=WHITE
+This parameter specifies the color of the text. In this case, the text will be filled with the color WHITE.
+Summary
+The draw.text() method is used to render text on the display at a specified position, using a specified font and fill color. The position is calculated to center the text on the display. The values provided ensure that the text is properly aligned and visually appealing on the screen.
